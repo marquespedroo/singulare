@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singulare | Arquitetura que Inspira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'ice-white': '#F8F8F6',
+              'bronze': '#A8896C',
+              'bronze-light': '#C4A98F',
+              'graphite': '#2A2A2A',
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['"Manrope"', 'sans-serif'],
+            },
+            cursor: {
+              none: 'none',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        cursor: none; /* Hide default cursor for custom implementation */
+        background-color: #F8F8F6;
+        overflow-x: hidden;
+      }
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Utilities */
+      .skew-clip {
+        clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+      }
+      .skew-clip-reverse {
+        clip-path: polygon(0 0, 85% 0, 100% 100%, 15% 100%);
+      }
+      
+      /* Hide scrollbar for clean look */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F8F8F6; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #A8896C; 
+        border-radius: 3px;
+      }
+
+      /* Slow fade in animation */
+      @keyframes float-up {
+        0% { transform: translateY(20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+      .animate-float-up {
+        animation: float-up 1s ease-out forwards;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
