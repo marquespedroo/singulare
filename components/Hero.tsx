@@ -100,7 +100,7 @@ const Hero: React.FC = () => {
             {/* Background Color (Solid) */}
             <div
               ref={leftImageRef}
-              className="absolute inset-[-50%] w-[200%] h-[200%] bg-[#291C15]"
+              className="absolute inset-[-50%] w-[200%] h-[200%] bg-[#707665]"
               style={{
                 transform: 'scale(1.2)',
               }}
