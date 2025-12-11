@@ -98,12 +98,17 @@ const Hero: React.FC = () => {
             O empreendimento mais esperado de Samambaia Sul
           </p>
 
-          <button className="group relative px-8 py-3 md:px-10 md:py-4 bg-[#2F2A35] text-white font-sans text-xs md:text-sm uppercase tracking-widest font-bold hover:bg-bronze transition-all duration-300 transform hover:scale-105 hover:skew-x-[-10deg]">
+          <a
+            href="https://wa.me/message/2HXZGHMSM2TQL1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-block px-8 py-3 md:px-10 md:py-4 bg-[#2F2A35] text-white font-sans text-xs md:text-sm uppercase tracking-widest font-bold hover:bg-bronze transition-all duration-300 transform hover:scale-105 hover:skew-x-[-10deg]"
+          >
             <span className="relative z-10 flex items-center gap-3">
               Garantir Prioridade Agora
               <span className="text-lg">→</span>
             </span>
-          </button>
+          </a>
         </div>
 
         {/* --- VISUALS COLUMN (Green Frame + Image) --- */}

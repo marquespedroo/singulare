@@ -19,7 +19,7 @@ export const MENU_ITEMS = [
     { label: "LOCALIZAÇÃO", href: "#location" },
     { label: "LAZER E PLANTAS", href: "#interiors" },
     { label: "PAGAMENTO E CONTATO", href: "#contact" },
-    { label: "FALAR COM O CORRETOR", href: "https://wa.me/5561999999999" }, // Added CTA
+    { label: "FALAR COM O CORRETOR", href: "https://wa.me/message/2HXZGHMSM2TQL1" }, // Added CTA
 ];
 
 export const IMAGES = {

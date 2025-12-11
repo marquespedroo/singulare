@@ -36,9 +36,14 @@ const ConceptSection: React.FC = () => {
               ))}
             </ul>
 
-            <button className="border-b border-graphite pb-1 text-sm font-sans uppercase tracking-widest hover:text-bronze hover:border-bronze transition-colors">
+            <a
+              href="https://wa.me/message/2HXZGHMSM2TQL1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block border-b border-graphite pb-1 text-sm font-sans uppercase tracking-widest hover:text-bronze hover:border-bronze transition-colors"
+            >
               → Quero me qualificar
-            </button>
+            </a>
           </div>
 
           {/* Right: Consultant Card */}
@@ -60,9 +65,14 @@ const ConceptSection: React.FC = () => {
                   “O meu trabalho é garantir que você entre antes de todo mundo e tenha acesso às melhores oportunidades. A pré-lista já está quase no limite.”
                 </blockquote>
 
-                <button className="w-full py-3 bg-graphite text-white font-sans text-xs uppercase tracking-widest hover:bg-bronze transition-colors">
+                <a
+                  href="https://wa.me/message/2HXZGHMSM2TQL1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center py-3 bg-graphite text-white font-sans text-xs uppercase tracking-widest hover:bg-bronze transition-colors"
+                >
                   Falar com Ricardo Agora
-                </button>
+                </a>
 
                 <div className="mt-8 pt-6 border-t border-gray-100">
                   <p className="text-xs font-bold text-graphite uppercase tracking-wide">Direcional + Riva</p>
@@ -115,10 +125,15 @@ const ConceptSection: React.FC = () => {
                 ))}
               </div>
 
-              <button className="group flex items-center space-x-2 text-bronze font-sans text-sm uppercase tracking-widest mt-4">
+              <a
+                href="https://wa.me/message/2HXZGHMSM2TQL1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center space-x-2 text-bronze font-sans text-sm uppercase tracking-widest mt-4"
+              >
                 <span>Quero receber o material completo</span>
                 <span className="transition-transform group-hover:translate-x-2">→</span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IMAGES } from '../constants';
 
 const LocationSection: React.FC = () => {
+  const [showMap, setShowMap] = useState(false);
   return (
     <section id="location" className="relative py-32 bg-[#F0F0EE]">
       <div className="container mx-auto px-6">
-        
+
         <div className="flex flex-col-reverse md:flex-row items-center gap-20">
-          
+
           {/* Left: Image (Parallelogram) */}
           <div className="w-full md:w-5/12 relative">
-             <div className="relative w-full aspect-[3/4] skew-clip-reverse overflow-hidden shadow-2xl group">
-                <img 
-                  src={IMAGES.BUILDING_VERTICAL} 
-                  alt="Singulare no horizonte" 
-                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-graphite/60 to-transparent mix-blend-multiply" />
-                <div className="absolute bottom-10 left-10 text-white z-10">
-                   <p className="text-3xl font-serif italic">Conectado a tudo</p>
-                </div>
-             </div>
+            <div className="relative w-full aspect-[3/4] skew-clip-reverse overflow-hidden shadow-2xl group">
+              <img
+                src={IMAGES.BUILDING_VERTICAL}
+                alt="Singulare no horizonte"
+                className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-graphite/60 to-transparent mix-blend-multiply" />
+              <div className="absolute bottom-10 left-10 text-white z-10">
+                <p className="text-3xl font-serif italic">Conectado a tudo</p>
+              </div>
+            </div>
           </div>
 
           {/* Right: Map & Narrative */}
@@ -37,26 +38,47 @@ const LocationSection: React.FC = () => {
 
             {/* Location List */}
             <div className="grid grid-cols-2 gap-y-4 gap-x-8 font-sans text-graphite/80">
-               {[
-                 "Centro Urbano", "Avenida Principal",
-                 "Administração", "Supermercados",
-                 "Atacadistas", "Escolas",
-                 "Pontos de Ônibus", "Metrô",
-                 "Academias", "Centro de Samambaia"
-               ].map((place, idx) => (
-                 <div key={idx} className="flex items-center space-x-3 border-b border-bronze/10 pb-2">
-                    <span className="text-bronze text-lg">›</span>
-                    <span className="font-light">{place}</span>
-                 </div>
-               ))}
+              {[
+                "Centro Urbano", "Avenida Principal",
+                "Administração", "Supermercados",
+                "Atacadistas", "Escolas",
+                "Pontos de Ônibus", "Metrô",
+                "Academias", "Centro de Samambaia"
+              ].map((place, idx) => (
+                <div key={idx} className="flex items-center space-x-3 border-b border-bronze/10 pb-2">
+                  <span className="text-bronze text-lg">›</span>
+                  <span className="font-light">{place}</span>
+                </div>
+              ))}
             </div>
-            
-            <button className="inline-flex px-8 py-3 border border-bronze text-bronze hover:bg-bronze hover:text-white transition-all duration-300 font-sans text-xs uppercase tracking-widest">
-               Ver no Mapa
+
+            {/* Map Toggle Button */}
+            <button
+              onClick={() => setShowMap(!showMap)}
+              className="inline-flex px-8 py-3 border border-bronze text-bronze hover:bg-bronze hover:text-white transition-all duration-300 font-sans text-xs uppercase tracking-widest"
+            >
+              {showMap ? 'Fechar Mapa' : 'Ver no Mapa'}
             </button>
 
+            {/* Collapsible Map Section */}
+            <div className={`transition-all duration-700 ease-in-out overflow-hidden ${showMap ? 'max-h-[500px] opacity-100 mt-8' : 'max-h-0 opacity-0 mt-0'}`}>
+              <div className="w-full h-[400px] bg-gray-200 border border-bronze/20 shadow-inner">
+                <iframe
+                  title="Singulare Location"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
+                  src="https://maps.google.com/maps?q=-15.881604,-48.087830&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+            </div>
+
           </div>
-          
+
         </div>
       </div>
     </section>

@@ -27,9 +27,14 @@ const Footer: React.FC = () => {
                         </li>
                      ))}
                   </ul>
-                  <button className="mt-8 text-sm font-bold uppercase tracking-widest border-b-2 border-bronze text-graphite pb-1 hover:text-bronze transition-colors">
+                  <a
+                     href="https://wa.me/message/2HXZGHMSM2TQL1"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="inline-block mt-8 text-sm font-bold uppercase tracking-widest border-b-2 border-bronze text-graphite pb-1 hover:text-bronze transition-colors"
+                  >
                      Solicitar Minha Simulação
-                  </button>
+                  </a>
                </div>
 
                {/* FAQ */}
@@ -81,7 +86,9 @@ const Footer: React.FC = () => {
                      “Se você quer entrar na lista enquanto ainda dá tempo, eu posso te colocar na frente hoje mesmo. Não espere abrir ao público.”
                   </p>
                   <a
-                     href="#"
+                     href="https://wa.me/message/2HXZGHMSM2TQL1"
+                     target="_blank"
+                     rel="noopener noreferrer"
                      className="inline-block bg-bronze text-white px-10 py-4 font-sans text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-bronze transition-colors duration-300 transform hover:scale-105"
                   >
                      Falar agora com Ricardo (WhatsApp)
@@ -91,8 +98,14 @@ const Footer: React.FC = () => {
                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs font-sans text-white/30 uppercase tracking-wider">
                   <p>© 2025 Singulare Inc. | Direcional + Riva</p>
                   <div className="flex space-x-6 mt-4 md:mt-0">
-                     <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                     <a href="#" className="hover:text-white transition-colors">Facebook</a>
+                     <a
+                        href="https://www.instagram.com/singularehomesamambaia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors"
+                     >
+                        Instagram
+                     </a>
                   </div>
                </div>
             </div>

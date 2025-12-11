@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { IMAGES } from '../constants';
 
 const interiors = [
@@ -9,7 +9,50 @@ const interiors = [
   { img: IMAGES.CAROUSEL_TERRENO, title: "Terreno" },
 ];
 
+const floorPlans = [
+  { img: IMAGES.FLOOR_PLAN_1, title: "Planta Final 01 e 02" },
+  { img: IMAGES.FLOOR_PLAN_2, title: "Planta Final 03 e 04" },
+];
+
 const InteriorsSection: React.FC = () => {
+  const [isGalleryOpen, setGalleryOpen] = useState(false);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [galleryType, setGalleryType] = useState<'interiors' | 'plans'>('interiors');
+
+  const activeCollection = galleryType === 'interiors' ? interiors : floorPlans;
+
+  const openGallery = (index: number = 0, type: 'interiors' | 'plans' = 'interiors') => {
+    setGalleryType(type);
+    setCurrentIdx(index);
+    setGalleryOpen(true);
+    document.body.style.overflow = 'hidden'; // Lock scroll
+  };
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+    document.body.style.overflow = 'unset'; // Unlock scroll
+  };
+
+  const nextImage = useCallback(() => {
+    setCurrentIdx((prev) => (prev + 1) % activeCollection.length);
+  }, [activeCollection]);
+
+  const prevImage = useCallback(() => {
+    setCurrentIdx((prev) => (prev - 1 + activeCollection.length) % activeCollection.length);
+  }, [activeCollection]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!isGalleryOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeGallery();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isGalleryOpen, nextImage, prevImage]);
+
   return (
     <section id="interiors" className="py-32 bg-ice-white overflow-hidden">
 
@@ -35,7 +78,10 @@ const InteriorsSection: React.FC = () => {
         </div>
 
         <div className="mt-8">
-          <button className="text-bronze border-b border-bronze pb-1 font-serif italic text-xl hover:text-graphite transition-colors">
+          <button
+            onClick={() => openGallery(0, 'interiors')}
+            className="text-bronze border-b border-bronze pb-1 font-serif italic text-xl hover:text-graphite transition-colors"
+          >
             Ver fotos e renders exclusivos →
           </button>
         </div>
@@ -45,7 +91,11 @@ const InteriorsSection: React.FC = () => {
       <div className="relative w-full mb-32">
         <div className="flex space-x-8 animate-[marquee_40s_linear_infinite] w-max hover:[animation-play-state:paused]">
           {[...interiors, ...interiors].map((item, index) => (
-            <div key={index} className="relative w-[80vw] md:w-[600px] h-[400px] md:h-[500px] shrink-0 group cursor-none">
+            <div
+              key={index}
+              onClick={() => openGallery(index % interiors.length, 'interiors')}
+              className="relative w-[80vw] md:w-[600px] h-[400px] md:h-[500px] shrink-0 group cursor-pointer"
+            >
               <div className="absolute inset-0 bg-graphite/10 transform skew-x-[-5deg] translate-x-4 translate-y-4" />
               <div className="relative w-full h-full overflow-hidden skew-x-[-5deg]">
                 <img
@@ -90,14 +140,22 @@ const InteriorsSection: React.FC = () => {
                   <div className="w-1 h-1 bg-bronze rounded-full" /> Banheiro com ventilação natural
                 </li>
               </ul>
-              <button className="px-8 py-3 bg-white text-graphite font-sans text-xs uppercase tracking-widest hover:bg-bronze hover:text-white transition-colors">
+              <a
+                href="https://wa.me/message/2HXZGHMSM2TQL1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-3 bg-white text-graphite font-sans text-xs uppercase tracking-widest hover:bg-bronze hover:text-white transition-colors"
+              >
                 Baixar as Plantas Agora
-              </button>
+              </a>
             </div>
 
             <div className="md:w-1/2 flex flex-col md:flex-row justify-center gap-6">
               {/* Floor Plan 1 */}
-              <div className="relative group overflow-hidden border border-white/10 bg-white/5 p-4 shadow-xl transition-all duration-300 hover:border-bronze/50 hover:shadow-bronze/20">
+              <div
+                onClick={() => openGallery(0, 'plans')}
+                className="relative group overflow-hidden border border-white/10 bg-white/5 p-4 shadow-xl transition-all duration-300 hover:border-bronze/50 hover:shadow-bronze/20 cursor-pointer"
+              >
                 <div className="aspect-[3/4] overflow-hidden">
                   <img
                     src={IMAGES.FLOOR_PLAN_1}
@@ -105,11 +163,15 @@ const InteriorsSection: React.FC = () => {
                     className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
+                <div className="absolute inset-0 pointer-events-none group-hover:bg-white/5 transition-colors" /> {/* Hover highlight overlay */}
                 <p className="text-center text-xs text-bronze uppercase tracking-widest mt-4 font-bold">Final 01 e 02</p>
               </div>
 
               {/* Floor Plan 2 */}
-              <div className="relative group overflow-hidden border border-white/10 bg-white/5 p-4 shadow-xl transition-all duration-300 hover:border-bronze/50 hover:shadow-bronze/20 md:mt-12">
+              <div
+                onClick={() => openGallery(1, 'plans')}
+                className="relative group overflow-hidden border border-white/10 bg-white/5 p-4 shadow-xl transition-all duration-300 hover:border-bronze/50 hover:shadow-bronze/20 md:mt-12 cursor-pointer"
+              >
                 <div className="aspect-[3/4] overflow-hidden">
                   <img
                     src={IMAGES.FLOOR_PLAN_2}
@@ -117,6 +179,7 @@ const InteriorsSection: React.FC = () => {
                     className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
+                <div className="absolute inset-0 pointer-events-none group-hover:bg-white/5 transition-colors" /> {/* Hover highlight overlay */}
                 <p className="text-center text-xs text-bronze uppercase tracking-widest mt-4 font-bold">Final 03 e 04</p>
               </div>
             </div>
@@ -130,6 +193,67 @@ const InteriorsSection: React.FC = () => {
           100% { transform: translateX(-50%); }
         }
       `}</style>
+
+      {/* Fullscreen Gallery Modal */}
+      {isGalleryOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-fade-in">
+
+          {/* Close Button */}
+          <button
+            onClick={closeGallery}
+            className="absolute top-6 right-24 text-white/50 hover:text-white transition-colors z-[60]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Navigation - Left */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            className="absolute left-4 md:left-8 text-white/50 hover:text-white transition-colors z-[60] p-4 group"
+          >
+            <div className="border border-white/20 rounded-full p-2 group-hover:border-white/50 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 19l-7-7 7-7" />
+              </svg>
+            </div>
+          </button>
+
+          {/* Main Image */}
+          <div className="relative w-full max-w-6xl max-h-[85vh] p-4 flex flex-col items-center justify-center">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <img
+                src={activeCollection[currentIdx].img}
+                alt={activeCollection[currentIdx].title}
+                className="max-w-full max-h-[80vh] object-contain shadow-2xl animate-scale-in"
+              />
+            </div>
+            <div className="mt-6 text-center">
+              <h3 className="text-2xl md:text-3xl font-serif text-white italic mb-2 tracking-wide">
+                {activeCollection[currentIdx].title}
+              </h3>
+              <p className="text-white/40 font-sans text-xs uppercase tracking-widest">
+                {currentIdx + 1} / {activeCollection.length}
+              </p>
+            </div>
+          </div>
+
+          {/* Navigation - Right */}
+          <button
+            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            className="absolute right-4 md:right-8 text-white/50 hover:text-white transition-colors z-[60] p-4 group"
+          >
+            <div className="border border-white/20 rounded-full p-2 group-hover:border-white/50 transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </button>
+
+        </div>
+      )}
+
     </section>
   );
 };

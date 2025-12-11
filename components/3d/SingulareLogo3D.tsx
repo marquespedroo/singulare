@@ -16,6 +16,7 @@ function getShapeArea(shape: THREE.Shape) {
 function LogoScene() {
     const groupRef = useRef<THREE.Group>(null);
     const lightRef = useRef<THREE.SpotLight>(null);
+    const movingLightRef = useRef<THREE.SpotLight>(null);
     const mouseRef = useRef(new THREE.Vector2(0, 0));
 
     // Global Mouse Tracking to ensure the light follows mouse even outside the canvas
@@ -30,19 +31,31 @@ function LogoScene() {
     }, []);
 
     useFrame((state) => {
-        if (!lightRef.current) return;
+        if (lightRef.current) {
+            // Calculate target position based on viewport dimensions
+            // We use the global mouseRef instead of state.pointer to capture movement across the entire screen
+            const x = (mouseRef.current.x * state.viewport.width) / 1.5; // Divide by 1.5 to allow wider reach
+            const y = (mouseRef.current.y * state.viewport.height) / 1.5;
 
-        // Calculate target position based on viewport dimensions
-        // We use the global mouseRef instead of state.pointer to capture movement across the entire screen
-        const x = (mouseRef.current.x * state.viewport.width) / 1.5; // Divide by 1.5 to allow wider reach
-        const y = (mouseRef.current.y * state.viewport.height) / 1.5;
+            // Smoothly interpolate light position
+            lightRef.current.position.lerp(new THREE.Vector3(x, y, 12), 0.02);
 
-        // Smoothly interpolate light position
-        lightRef.current.position.lerp(new THREE.Vector3(x, y, 12), 0.02);
+            // Ensure light always points to center
+            lightRef.current.target.position.set(0, 0, 0);
+            lightRef.current.target.updateMatrixWorld();
+        }
 
-        // Ensure light always points to center
-        lightRef.current.target.position.set(0, 0, 0);
-        lightRef.current.target.updateMatrixWorld();
+        // Automated Moving Spotlight Animation
+        if (movingLightRef.current) {
+            const time = state.clock.elapsedTime;
+            // Sweep back and forth
+            movingLightRef.current.position.x = Math.sin(time * 0.2) * 20; // Slower sweep (was 0.5)
+            movingLightRef.current.position.y = Math.cos(time * 0.1) * 5; // Very slow vertical variance
+            movingLightRef.current.position.z = 12;
+
+            movingLightRef.current.target.position.set(0, 0, 0);
+            movingLightRef.current.target.updateMatrixWorld();
+        }
     });
 
     // Load the SVG file
@@ -104,7 +117,7 @@ function LogoScene() {
 
     return (
         <group ref={groupRef}>
-            <Center position={[0, 0.5, 0]}>
+            <Center position={[0, -1, 0]}>
                 {/* Elegant Float Animation: Slower, smoother, heavier feel */}
                 <Float
                     speed={0.2} // Animation speed
@@ -163,6 +176,17 @@ function LogoScene() {
                 penumbra={1} // SOFTEST edges (was 0.5) - eliminates the "dot" look
                 intensity={10} // Reduced intensity
                 color="#E5A00D" // Gold Light
+                castShadow
+            />
+
+            {/* Automated Dynamic Spotlight for sheen effect */}
+            <spotLight
+                ref={movingLightRef}
+                position={[0, 0, 12]}
+                angle={2.0} // WIDER beam (was 0.6)
+                penumbra={1} // Softer edges
+                intensity={50} // Bright pulse
+                color="#ffffff" // Clean White Glint
                 castShadow
             />
 
