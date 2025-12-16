@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { IMAGES } from '../constants';
+import MarqueeCarousel from './MarqueeCarousel';
 
 const interiors = [
   { img: IMAGES.CAROUSEL_PISCINA, title: "Piscina Adulto" },
@@ -88,29 +89,11 @@ const InteriorsSection: React.FC = () => {
       </div>
 
       {/* Marquee Gallery */}
-      <div className="relative w-full mb-32">
-        <div className="flex space-x-8 animate-[marquee_40s_linear_infinite] w-max hover:[animation-play-state:paused]">
-          {[...interiors, ...interiors].map((item, index) => (
-            <div
-              key={index}
-              onClick={() => openGallery(index % interiors.length, 'interiors')}
-              className="relative w-[80vw] md:w-[600px] h-[400px] md:h-[500px] shrink-0 group cursor-pointer"
-            >
-              <div className="absolute inset-0 bg-graphite/10 transform skew-x-[-5deg] translate-x-4 translate-y-4" />
-              <div className="relative w-full h-full overflow-hidden skew-x-[-5deg]">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-full object-cover transform scale-100 group-hover:scale-110 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                <div className="absolute bottom-8 left-8">
-                  <h3 className="text-white font-serif text-3xl italic">{item.title}</h3>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="mb-32">
+        <MarqueeCarousel
+          items={interiors}
+          onItemClick={(idx) => openGallery(idx, 'interiors')}
+        />
       </div>
 
       {/* Floor Plans Section */}
@@ -187,12 +170,7 @@ const InteriorsSection: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
+      {/* Style jsx removed as it is handled in MarqueeCarousel */}
 
       {/* Fullscreen Gallery Modal */}
       {isGalleryOpen && (

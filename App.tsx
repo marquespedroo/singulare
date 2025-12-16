@@ -7,6 +7,8 @@ import LocationSection from './components/LocationSection';
 import InteriorsSection from './components/InteriorsSection';
 import Footer from './components/Footer';
 
+import MoreProjectsSection from './components/MoreProjectsSection';
+
 const App: React.FC = () => {
   const [isDesktop, setIsDesktop] = useState(true);
 
@@ -23,7 +25,7 @@ const App: React.FC = () => {
   return (
     <div className="relative bg-ice-white text-graphite selection:bg-bronze selection:text-white min-h-screen">
       {isDesktop && <CustomCursor />}
-      
+
       <Menu />
 
       <main>
@@ -31,6 +33,7 @@ const App: React.FC = () => {
         <ConceptSection />
         <LocationSection />
         <InteriorsSection />
+        <MoreProjectsSection />
       </main>
 
       <Footer />

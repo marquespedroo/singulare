@@ -9,14 +9,8 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      {/* Logo Top Left */}
-      <div className="fixed top-8 left-8 z-[60] mix-blend-difference cursor-pointer hover:scale-105 transition-transform duration-300">
-        <img
-          src={logoBlack}
-          alt="Singulare"
-          className="h-10 md:h-14 w-auto invert"
-        />
-      </div>
+      {/* Logo Top Left - Removed as per request */}
+
 
       {/* Trigger Button - "Hamburger" */}
       <button

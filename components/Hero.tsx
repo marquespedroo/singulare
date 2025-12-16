@@ -88,6 +88,12 @@ const Hero: React.FC = () => {
         <div className={`relative z-30 text-center md:text-left transition-all duration-[2000ms] delay-700 flex flex-col items-center md:items-start justify-center md:flex-1 md:pl-24
              ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
         `}>
+          <div className="mb-6 opacity-0 animate-float-up" style={{ animationDelay: '500ms', animationFillMode: 'forwards' }}>
+            <span className="inline-block px-6 py-2 bg-[#2F2A35] text-white border border-[#2F2A35] text-xs md:text-sm font-sans font-bold uppercase tracking-[0.3em] rounded-full shadow-lg">
+              Destaque
+            </span>
+          </div>
+
           <div className="w-[300px] h-[160px] md:w-[600px] md:h-[320px] transition-all duration-700 hover:scale-105">
             <SingulareLogo3D />
           </div>

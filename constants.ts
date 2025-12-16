@@ -43,3 +43,21 @@ export const IMAGES = {
     // Agent
     RICARDO_SANTOS: ricardoSantos,
 };
+
+import newProject1 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.02 PM.jpeg';
+import newProject2 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.03 PM (1).jpeg';
+import newProject3 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.04 PM.jpeg';
+import newProject4 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.05 PM.jpeg';
+import newProject5 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.06 PM (1).jpeg'; // Vertical?
+import newProject6 from '@/assests-public/novos-empreendimentos/WhatsApp Image 2025-12-13 at 5.36.02 PM (2).jpeg';
+
+export const OTHER_PROJECTS = [
+    { img: newProject1, title: "Total Ville Conviver", subtitle: "Santa Maria" },
+    { img: newProject2, title: "Reserva Parque Clube", subtitle: "Águas Claras - Localização" },
+    { img: newProject3, title: "Recanto dos Pássaros", subtitle: "Águias" },
+    { img: newProject4, title: "Reserva Parque Clube", subtitle: "Torre 5" },
+    { img: newProject5, title: "Total Ville Planaltina", subtitle: "Condomínio 12" },
+    { img: newProject6, title: "Lançamento Valparaíso", subtitle: "Valparaíso" },
+];
+
+
