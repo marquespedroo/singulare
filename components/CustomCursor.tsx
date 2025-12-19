@@ -31,13 +31,13 @@ const CustomCursor: React.FC = () => {
   return (
     <div
       ref={cursorRef}
-      className={`fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] transition-all duration-300 ease-out -ml-4 -mt-4 mix-blend-difference`}
+      className={`hidden md:block fixed top-0 left-0 w-8 h-8 pointer-events-none z-[9999] transition-all duration-300 ease-out -ml-4 -mt-4 mix-blend-difference`}
     >
-      <div 
+      <div
         className={`w-full h-full border border-white transition-all duration-300 ease-out
-        ${isHovering 
-          ? 'scale-150 skew-x-[-15deg] bg-white/10' 
-          : 'scale-100 rounded-full'}`}
+        ${isHovering
+            ? 'scale-150 skew-x-[-15deg] bg-white/10'
+            : 'scale-100 rounded-full'}`}
       />
     </div>
   );

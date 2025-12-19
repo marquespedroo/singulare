@@ -40,6 +40,8 @@ const MoreProjectsSection: React.FC = () => {
                 items={OTHER_PROJECTS}
                 startIndex={currentIdx}
                 showTitle={false}
+                ctaLink="https://wa.me/message/2HXZGHMSM2TQL1"
+                ctaLabel="Falar com Corretor"
             />
         </section>
     );

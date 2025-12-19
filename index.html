@@ -31,9 +31,14 @@
     </script>
     <style>
       body {
-        cursor: none; /* Hide default cursor for custom implementation */
         background-color: #F8F8F6;
         overflow-x: hidden;
+        cursor: auto;
+      }
+      @media (min-width: 768px) {
+        body {
+          cursor: none; /* Hide default cursor only on desktop */
+        }
       }
       /* Smooth scrolling */
       html {

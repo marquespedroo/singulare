@@ -143,7 +143,7 @@ const InteriorsSection: React.FC = () => {
                   <img
                     src={IMAGES.FLOOR_PLAN_1}
                     alt="Planta 2 Quartos - Opção 1"
-                    className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110 blur-sm"
                   />
                 </div>
                 <div className="absolute inset-0 pointer-events-none group-hover:bg-white/5 transition-colors" /> {/* Hover highlight overlay */}
@@ -159,7 +159,7 @@ const InteriorsSection: React.FC = () => {
                   <img
                     src={IMAGES.FLOOR_PLAN_2}
                     alt="Planta 2 Quartos - Opção 2"
-                    className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110 blur-sm"
                   />
                 </div>
                 <div className="absolute inset-0 pointer-events-none group-hover:bg-white/5 transition-colors" /> {/* Hover highlight overlay */}
@@ -204,7 +204,7 @@ const InteriorsSection: React.FC = () => {
               <img
                 src={activeCollection[currentIdx].img}
                 alt={activeCollection[currentIdx].title}
-                className="max-w-full max-h-[80vh] object-contain shadow-2xl animate-scale-in"
+                className={`max-w-full max-h-[80vh] object-contain shadow-2xl animate-scale-in ${galleryType === 'plans' ? 'blur-md' : ''}`}
               />
             </div>
             <div className="mt-6 text-center">

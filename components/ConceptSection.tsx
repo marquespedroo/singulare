@@ -3,25 +3,26 @@ import { IMAGES } from '../constants';
 
 const ConceptSection: React.FC = () => {
   return (
-    <section id="concept" className="relative py-24 bg-ice-white overflow-hidden">
+    <section id="concept" className="relative pt-0 pb-24 md:pt-12 bg-ice-white overflow-hidden">
 
       {/* Decorative Line */}
       <div className="absolute top-0 right-1/4 w-[1px] h-full bg-bronze/10 -skew-x-[15deg] z-0" />
 
       <div className="container mx-auto px-6 relative z-10">
 
-        {/* Part 1: Why Singulare & Consultant */}
-        <div className="flex flex-col md:flex-row gap-16 mb-32">
+        {/* Part 1: Why Singulare - Split Layout */}
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24 mb-32 items-start">
 
-          {/* Left: Why Singulare */}
-          <div className="md:w-1/2 space-y-12 animate-float-up">
-            <div>
-              <span className="text-bronze text-xs font-sans font-bold tracking-[0.3em] uppercase">Por que Singulare?</span>
-              <h2 className="text-4xl md:text-6xl font-serif text-graphite mt-4 mb-8 italic">
-                A escolha certa para <br />o seu futuro.
-              </h2>
-            </div>
+          {/* Left Column: Title */}
+          <div className="md:w-1/2 animate-float-up">
+            <span className="text-bronze text-xs font-sans font-bold tracking-[0.3em] uppercase">Por que Singulare?</span>
+            <h2 className="text-4xl md:text-6xl font-serif text-graphite mt-4 italic leading-tight">
+              A escolha certa para <br />o seu futuro.
+            </h2>
+          </div>
 
+          {/* Right Column: List & CTA */}
+          <div className="md:w-1/2 space-y-10 animate-float-up md:mt-14" style={{ animationDelay: '200ms' }}>
             <ul className="space-y-6">
               {[
                 "Condições especiais apenas para pré-lista",
@@ -46,42 +47,9 @@ const ConceptSection: React.FC = () => {
             </a>
           </div>
 
-          {/* Right: Consultant Card */}
-          <div className="md:w-1/2 md:mt-24">
-            <div className="relative p-8 border border-bronze/20 bg-white shadow-xl skew-x-[-5deg] group hover:border-bronze/40 transition-colors">
-              <div className="skew-x-[5deg]"> {/* Unskew content */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-20 h-20 overflow-hidden border border-bronze/20 shadow-sm">
-                    <img src={IMAGES.RICARDO_SANTOS} alt="Ricardo Santos" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-sans text-bronze uppercase tracking-widest mb-1">Seu Consultor Exclusivo</p>
-                    <h3 className="text-2xl font-serif text-graphite">Ricardo Santos</h3>
-                    <p className="text-sm font-sans text-graphite/50">Direcional Vendas / Riva</p>
-                  </div>
-                </div>
-
-                <blockquote className="font-serif italic text-lg text-graphite/80 mb-6 border-l-2 border-bronze pl-4">
-                  “O meu trabalho é garantir que você entre antes de todo mundo e tenha acesso às melhores oportunidades. A pré-lista já está quase no limite.”
-                </blockquote>
-
-                <a
-                  href="https://wa.me/message/2HXZGHMSM2TQL1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center py-3 bg-graphite text-white font-sans text-xs uppercase tracking-widest hover:bg-bronze transition-colors"
-                >
-                  Falar com Ricardo Agora
-                </a>
-
-                <div className="mt-8 pt-6 border-t border-gray-100">
-                  <p className="text-xs font-bold text-graphite uppercase tracking-wide">Direcional + Riva</p>
-                  <p className="text-xs text-graphite/60 mt-1">Mais de 200 mil unidades entregues. Segurança e confiança.</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+
+
 
         {/* Part 2: Assinatura Uniqua */}
         <div className="relative">
@@ -139,7 +107,7 @@ const ConceptSection: React.FC = () => {
         </div>
 
       </div>
-    </section>
+    </section >
   );
 };
 

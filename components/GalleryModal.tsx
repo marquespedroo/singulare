@@ -6,6 +6,8 @@ interface GalleryModalProps {
     items: { img: string; title: string; subtitle?: string }[];
     startIndex: number;
     showTitle?: boolean;
+    ctaLink?: string;
+    ctaLabel?: string;
 }
 
 const GalleryModal: React.FC<GalleryModalProps> = ({
@@ -13,7 +15,9 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
     onClose,
     items,
     startIndex,
-    showTitle = true
+    showTitle = true,
+    ctaLink,
+    ctaLabel = "Falar com Corretor"
 }) => {
     const [currentIdx, setCurrentIdx] = React.useState(startIndex);
 
@@ -92,17 +96,35 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
                         className="max-w-full max-h-[80vh] object-contain shadow-2xl animate-scale-in select-none"
                     />
                 </div>
-                {showTitle && (
-                    <div className="mt-6 text-center">
-                        <h3 className="text-2xl md:text-3xl font-serif text-white italic mb-2 tracking-wide">
-                            {currentItem.title}
-                        </h3>
-                        {currentItem.subtitle && (
-                            <p className="text-white/60 font-sans text-sm uppercase tracking-widest mb-1">{currentItem.subtitle}</p>
+                {(showTitle || ctaLink) && (
+                    <div className="mt-6 text-center flex flex-col items-center">
+                        {showTitle && (
+                            <>
+                                <h3 className="text-xl md:text-3xl font-serif text-white italic mb-2 tracking-wide">
+                                    {currentItem.title}
+                                </h3>
+                                {currentItem.subtitle && (
+                                    <p className="text-white/60 font-sans text-xs md:text-sm uppercase tracking-widest mb-4">{currentItem.subtitle}</p>
+                                )}
+                            </>
                         )}
-                        <p className="text-white/40 font-sans text-xs uppercase tracking-widest">
-                            {currentIdx + 1} / {items.length}
-                        </p>
+
+                        {ctaLink && (
+                            <a
+                                href={ctaLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block px-8 py-3 bg-bronze text-white font-sans text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:text-bronze transition-all duration-300 mb-4 transform hover:scale-105"
+                            >
+                                {ctaLabel}
+                            </a>
+                        )}
+
+                        {showTitle && (
+                            <p className="text-white/40 font-sans text-[10px] uppercase tracking-widest mt-2">
+                                {currentIdx + 1} / {items.length}
+                            </p>
+                        )}
                     </div>
                 )}
             </div>
